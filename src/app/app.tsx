@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Cover, { CoverProps } from '../cover/cover.tsx';
 import './app.css';
 
