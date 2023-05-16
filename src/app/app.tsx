@@ -6,62 +6,62 @@ const covers: CoverProps[] = [
   {
     album: '13 Songs',
     artist: 'Fugazi',
-    cover: '/covers/fugazi.jpg',
+    cover: './covers/fugazi.jpg',
   },
   {
     album: 'White Album',
     artist: 'The Beatles',
-    cover: '/covers/white-album.jpg',
+    cover: './covers/white-album.jpg',
   },
   {
     album: 'Your Sincerely, Dr Hardcore',
     artist: 'Gallops',
-    cover: '/covers/dr-hardcore.jpg',
+    cover: './covers/dr-hardcore.jpg',
   },
   {
     album: 'Muttermaschine',
     artist: 'Mother Engine',
-    cover: '/covers/motherengine.jpg',
+    cover: './covers/motherengine.jpg',
   },
   {
     album: 'Use Your Illusion I',
     artist: "Guns n' Roses",
-    cover: '/covers/illusion.jpg',
+    cover: './covers/illusion.jpg',
   },
   {
     album: 'Use Your Illusion II',
     artist: "Guns n' Roses",
-    cover: '/covers/illusion-ii.jpg',
+    cover: './covers/illusion-ii.jpg',
   },
   {
     album: 'Graveyard',
     artist: 'Graveyard',
-    cover: '/covers/graveyard.jpg',
+    cover: './covers/graveyard.jpg',
   },
   {
     album: 'Dark Side of the Moon',
     artist: 'Pink Floyd',
-    cover: '/covers/dark-side.jpg',
+    cover: './covers/dark-side.jpg',
   },
   {
     album: 'Ten',
     artist: 'Pearl Jam',
-    cover: '/covers/ten.jpg',
+    cover: './covers/ten.jpg',
   },
   {
     album: 'Help!',
     artist: 'The Beatles',
-    cover: '/covers/help.jpg',
+    cover: './covers/help.jpg',
   },
   {
     album: "Sgt. Pepper's Lonely Hearts Club Band",
     artist: 'The Beatles',
-    cover: '/covers/sgt-pepper.jpg',
+    cover: './covers/sgt-pepper.jpg',
   },
   {
     album: 'Polygondwanaland',
     artist: 'King Gizzard & The Lizard Wizard',
-    cover: '/covers/polygondwanaland.jpg',
+    cover: './covers/polygondwanaland.jpg',
   },
 ];
 
