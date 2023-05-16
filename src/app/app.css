@@ -1,0 +1,67 @@
+.controls {
+  padding: var(--padding);
+  max-width: var(--container-width);
+  margin: 0 auto;
+  letter-spacing: -0.02em;
+}
+
+.control {
+  padding-bottom: 10px;
+}
+
+.control label {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.control a {
+  margin-left: 0.4em;
+  opacity: 0.5;
+  color: inherit;
+}
+
+.control a:hover {
+  opacity: 1;
+}
+
+.control svg {
+  width: 0.8em;
+  transform: translateY(1px);
+}
+
+.control-label {
+  font-weight: bold;
+}
+
+.control input[type='radio'] {
+  margin-right: 0.4em;
+  align-self: center;
+  transform: translateY(1px);
+}
+
+.control input[type='file'] {
+  margin-top: 8px;
+  flex: 100%;
+}
+
+.covers {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  scroll-padding: 20px;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  margin-bottom: 20vh;
+  margin-bottom: 20svh;
+  max-width: 1550px;
+  margin-inline: auto;
+  position: relative;
+}
+
+@media (min-width: 800px) {
+  .covers {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
