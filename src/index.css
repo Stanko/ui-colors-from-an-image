@@ -13,7 +13,9 @@
   --black: #1e293b;
 
   --bg: #f8fafc;
+  --neutral-light: #ddd;
   --color: #1e293b;
+  --link-color: #3d82f3;
 
   --container-width: 770px;
   --padding: 20px;
@@ -22,6 +24,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color: #f8fafc;
+    --neutral-light: #595e67;
     --bg: #393e47;
   }
 }
@@ -45,6 +48,18 @@ header {
   padding-bottom: 0;
   max-width: var(--container-width);
   margin: 0 auto;
+}
+
+header a {
+  font-size: 15px;
+  color: var(--color);
+  text-decoration: none;
+  border-bottom: 1px solid var(--neutral-light);
+  transition: border-color 250ms;
+}
+
+header a:hover {
+  border-bottom-color: var(--link-color);
 }
 
 h1 {

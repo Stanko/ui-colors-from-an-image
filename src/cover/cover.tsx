@@ -14,6 +14,7 @@ export type CoverProps = {
   album: string;
   lib?: Lib;
   tweak?: number;
+  remove?: () => void;
 };
 
 const Cover: React.FC<CoverProps> = ({
@@ -22,6 +23,7 @@ const Cover: React.FC<CoverProps> = ({
   album,
   lib,
   tweak = 0,
+  remove,
 }) => {
   const image = useRef<HTMLImageElement>(null);
   const [colors, setColors] = useState<ImageColors>(DEFAULT_COLOR_SET);
@@ -36,6 +38,24 @@ const Cover: React.FC<CoverProps> = ({
 
   return (
     <div className="cover" style={{ background: colors.dominant }}>
+      {remove && (
+        <button
+          className="cover-remove"
+          onClick={remove}
+          style={{ color: colors.text }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <title>Remove</title>
+            <path
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="2"
+              d="M 1 1 L 15 15 M 15 1 L 1 15"
+            />
+          </svg>
+        </button>
+      )}
       <div className="cover-wrapper">
         <img src={cover} alt="" aria-hidden="true" ref={image} />
       </div>

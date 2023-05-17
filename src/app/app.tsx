@@ -69,18 +69,18 @@ export type Lib = 'color-thief' | 'fast-average' | 'fast-dominant';
 
 const libraries: { label: string; value: Lib; link: string }[] = [
   {
-    label: 'Color Thief',
+    label: 'Color Thief (dominant)',
     value: 'color-thief',
     link: 'https://github.com/lokesh/color-thief',
   },
   {
-    label: 'fast-average-color',
-    value: 'fast-average',
+    label: 'fast-average-color (dominant)',
+    value: 'fast-dominant',
     link: 'https://github.com/fast-average-color/fast-average-color',
   },
   {
-    label: 'fast-average-color (dominant)',
-    value: 'fast-dominant',
+    label: 'fast-average-color (average)',
+    value: 'fast-average',
     link: 'https://github.com/fast-average-color/fast-average-color',
   },
 ];
@@ -93,22 +93,6 @@ function App() {
   return (
     <main>
       <div className="controls">
-        <div className="control">
-          <label htmlFor="tweak" className="control-label">
-            Tweak color ({tweak}%)
-          </label>
-          <input
-            type="range"
-            id="tweak"
-            value={tweak}
-            onInput={(e) => {
-              setTweak(parseInt((e.target as HTMLInputElement).value, 10));
-            }}
-            min={0}
-            max={10}
-            step={1}
-          />
-        </div>
         <div className="control">
           <div className="control-label">Library:</div>
           {libraries.map((library) => {
@@ -139,6 +123,22 @@ function App() {
           })}
         </div>
         <div className="control">
+          <label htmlFor="tweak" className="control-label">
+            Tweak color ({tweak}%)
+          </label>
+          <input
+            type="range"
+            id="tweak"
+            value={tweak}
+            onInput={(e) => {
+              setTweak(parseInt((e.target as HTMLInputElement).value, 10));
+            }}
+            min={0}
+            max={10}
+            step={1}
+          />
+        </div>
+        <div className="control">
           <label className="control-label">
             Test local file:
             <input
@@ -160,7 +160,7 @@ function App() {
       </div>
 
       <div className="covers">
-        {userImages.map((image) => {
+        {userImages.map((image, i) => {
           return (
             <Cover
               key={image}
@@ -169,6 +169,11 @@ function App() {
               album={'Hello World'}
               tweak={tweak}
               lib={lib}
+              remove={() => {
+                const newUserImages = [...userImages];
+                newUserImages.splice(i, 1);
+                setUserImages(newUserImages);
+              }}
             />
           );
         })}
