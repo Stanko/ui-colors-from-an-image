@@ -7,8 +7,13 @@
 
 @media (min-width: 800px) {
   .controls {
-    column-count: 2;
+    display: flex;
     gap: 10px;
+    justify-content: space-between;
+  }
+
+  .controls > div { 
+    flex: 50% 0 1;
   }
 }
 
@@ -40,6 +45,19 @@
 .control-label {
   font-weight: bold;
 }
+
+.control-note {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+@media (min-width: 800px) {
+  .control-note {
+    max-width: 250px;
+  }
+}
+
+
 
 .control input[type='radio'] {
   margin-right: 0.4em;

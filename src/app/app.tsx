@@ -122,40 +122,45 @@ function App() {
             );
           })}
         </div>
-        <div className="control">
-          <label htmlFor="tweak" className="control-label">
-            Tweak color ({tweak}%)
-          </label>
-          <input
-            type="range"
-            id="tweak"
-            value={tweak}
-            onInput={(e) => {
-              setTweak(parseInt((e.target as HTMLInputElement).value, 10));
-            }}
-            min={0}
-            max={10}
-            step={1}
-          />
-        </div>
-        <div className="control">
-          <label className="control-label">
-            Test local file:
+        <div>
+          <div className="control">
+            <label htmlFor="tweak" className="control-label">
+              Tweak lightness ({tweak}%)
+            </label>
+            <div className="control-note">
+              To prevent covers from blending into the background color
+            </div>
             <input
-              type="file"
-              onChange={(e) => {
-                const input = e.target as HTMLInputElement;
-
-                if (input.files && input.files.length > 0) {
-                  setUserImages([
-                    URL.createObjectURL(input.files[0]),
-                    ...userImages,
-                  ]);
-                  input.value = '';
-                }
+              type="range"
+              id="tweak"
+              value={tweak}
+              onInput={(e) => {
+                setTweak(parseInt((e.target as HTMLInputElement).value, 10));
               }}
+              min={0}
+              max={10}
+              step={1}
             />
-          </label>
+          </div>
+          <div className="control">
+            <label className="control-label">
+              Test local file:
+              <input
+                type="file"
+                onChange={(e) => {
+                  const input = e.target as HTMLInputElement;
+
+                  if (input.files && input.files.length > 0) {
+                    setUserImages([
+                      URL.createObjectURL(input.files[0]),
+                      ...userImages,
+                    ]);
+                    input.value = '';
+                  }
+                }}
+              />
+            </label>
+          </div>
         </div>
       </div>
 
