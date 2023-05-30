@@ -111,6 +111,7 @@ export const fixContrast = (
   blackOrWhite: 'black' | 'white',
   minContrast = 4.5 // AA contrast
 ): RGB => {
+  const EPSILON = 0.1;
   const isWhite = blackOrWhite === 'white';
   // Convert background to RGB format
   const backgroundRGB: RGB = isWhite ? [255, 255, 255] : [0, 0, 0];
@@ -124,14 +125,24 @@ export const fixContrast = (
   // Convert the color to HSLuv so we can adjust the lightness properly
   const colorHSL = getHsluvFromRGB(color);
 
-  // If background color is white we need to darken the color,
-  // otherwise we are lightening it.
-  const step = isWhite ? -3 : 3;
-
   let updatedColor: RGB;
+  let contrastDiff: number;
+
+  // Range for binary search
+  let left = 0;
+  let right = 100;
+
+  // Move one of the boundaries
+  if (isWhite) {
+    right = colorHSL.hsluv_l;
+  } else {
+    left = colorHSL.hsluv_l;
+  }
+
   do {
+    // Binary search
     // Update the lightness and test the contrast again
-    colorHSL.hsluv_l += step;
+    colorHSL.hsluv_l = left + (right - left) / 2;
 
     // Make sure RGB values are updated
     colorHSL.hsluvToRgb();
@@ -142,8 +153,18 @@ export const fixContrast = (
     // And compare is against the background
     contrast = getContrast(updatedColor, backgroundRGB);
 
-    // When we achieve the contrast, we can exit
-  } while (contrast < minContrast);
+    // Update search boundaries
+    contrastDiff = contrast - minContrast;
+
+    if (isWhite === contrastDiff < 0) {
+      right = colorHSL.hsluv_l;
+    } else {
+      left = colorHSL.hsluv_l;
+    }
+
+    // Repeat the process until the contrast is achieved,
+    // and contrast diff is less than the give EPSILON
+  } while (contrastDiff > EPSILON || contrastDiff < 0);
 
   return updatedColor;
 };
