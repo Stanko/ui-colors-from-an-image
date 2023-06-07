@@ -21,6 +21,8 @@ export const DEFAULT_COLOR_SET: ImageColors = {
   isDark: false,
 };
 
+const AA_CONTRAST = 4.5;
+
 // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
 // Returns a number between 0 and 1
 export const getLuminance = (color: RGB): number => {
@@ -109,7 +111,7 @@ export const modifyLightness = (colorRGB: RGB, tweak = 5): RGB => {
 export const fixContrast = (
   color: RGB,
   blackOrWhite: 'black' | 'white',
-  minContrast = 4.5 // AA contrast
+  minContrast = AA_CONTRAST
 ): RGB => {
   const EPSILON = 0.1;
   const isWhite = blackOrWhite === 'white';
@@ -236,7 +238,8 @@ export async function getColorsFromImage(
       dominant = modifyLightness(dominant, tweak);
     }
 
-    const isDark = getLuminance(dominant) < 0.5;
+    // Color is considered dark if it fulfils contrast of 4.5 against white
+    const isDark = getContrast(dominant, [255, 255, 255]) >= AA_CONTRAST;
 
     return {
       dominant: rgbToHex(dominant),
